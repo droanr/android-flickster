@@ -1,6 +1,7 @@
 package com.drishi.flickster.activities;
 
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.ListView;
@@ -21,9 +22,12 @@ import cz.msebera.android.httpclient.Header;
 
 public class MovieActivity extends AppCompatActivity {
 
+    private static final String url = "https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed";
+
     ArrayList<Movie> movies;
     MovieArrayAdapter movieAdapter;
     ListView lvItems;
+    SwipeRefreshLayout swipeContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,10 +38,26 @@ public class MovieActivity extends AppCompatActivity {
         movies = new ArrayList<>();
         movieAdapter = new MovieArrayAdapter(this, movies);
         lvItems.setAdapter(movieAdapter);
+        // Lookup the swipe container view
+        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
 
-        String url = "https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed";
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                fetchMoviesAsync(0);
+            }
+        });
 
-        AsyncHttpClient client = new AsyncHttpClient();
+        fetchMoviesAsync(0);
+    }
+
+    public AsyncHttpClient getClient() {
+        return new AsyncHttpClient();
+    }
+
+    public void fetchMoviesAsync(int page) {
+        movieAdapter.clear();
+        AsyncHttpClient client = getClient();
         client.get(url, new JsonHttpResponseHandler(){
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
@@ -51,6 +71,8 @@ public class MovieActivity extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+
+                swipeContainer.setRefreshing(false);
             }
 
             @Override
