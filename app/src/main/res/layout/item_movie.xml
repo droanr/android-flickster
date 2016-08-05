@@ -18,6 +18,7 @@
         android:layout_margin="10dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
         tools:text="Star Trek Beyond"
+        android:textColor="@android:color/white"
         android:id="@+id/tvTitle"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/ivMovieImage"
@@ -28,6 +29,7 @@
         android:layout_height="wrap_content"
         tools:text="The USS Enterprise crew explores the furthest reaches of uncharted space, where they encounter a mysterious new enemy who puts them and everything the Federation stands for to the test."
         android:id="@+id/tvOverview"
+        android:textColor="@android:color/white"
         android:layout_below="@+id/tvTitle"
         android:layout_alignLeft="@+id/tvTitle"
         android:layout_alignStart="@+id/tvTitle" />
