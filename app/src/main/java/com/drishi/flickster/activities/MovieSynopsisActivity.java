@@ -10,6 +10,7 @@ import com.drishi.flickster.R;
 import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
@@ -21,6 +22,7 @@ public class MovieSynopsisActivity extends AppCompatActivity {
     RatingBar rbMovieRating;
     TextView tvVoteCount;
     TextView tvReleaseDate;
+    TextView tvGenres;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,5 +58,10 @@ public class MovieSynopsisActivity extends AppCompatActivity {
         Date movieReleaseDate = (Date)getIntent().getSerializableExtra("movie_release_date");
         SimpleDateFormat formatter = new SimpleDateFormat("MMM dd, yyyy", Locale.US);
         tvReleaseDate.setText(formatter.format(movieReleaseDate));
+
+        tvGenres = (TextView) findViewById(R.id.tvGenres);
+        ArrayList<String> genres = (ArrayList<String>)bundle.getStringArrayList("movie_genres");
+        String mvGenres = genres.toString();
+        tvGenres.setText(mvGenres.substring(1, mvGenres.length()-1));
     }
 }

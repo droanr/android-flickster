@@ -42,10 +42,14 @@ public class MovieActivity extends AppCompatActivity {
 
         lvItems = (ListView) findViewById(R.id.lvMovies);
         movies = new ArrayList<>();
+        genreLookup = new HashMap<Integer, Genre>();
         movieAdapter = new MovieArrayAdapter(this, movies);
         lvItems.setAdapter(movieAdapter);
         // Lookup the swipe container view
         swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
+
+        fetchGenresAsync();
+        fetchMoviesAsync(0);
 
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -53,8 +57,6 @@ public class MovieActivity extends AppCompatActivity {
                 fetchMoviesAsync(0);
             }
         });
-
-        fetchMoviesAsync(0);
 
         lvItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -67,6 +69,7 @@ public class MovieActivity extends AppCompatActivity {
                 intent.putExtra("movie_rating", movie.getRating());
                 intent.putExtra("movie_vote_count", movie.getVoteCount());
                 intent.putExtra("movie_release_date", movie.getReleaseDate());
+                intent.putExtra("movie_genres", movie.getGenres());
                 startActivityForResult(intent, 1);
             }
         });
@@ -87,7 +90,7 @@ public class MovieActivity extends AppCompatActivity {
 
                 try {
                     movieJsonResults = response.getJSONArray("results");
-                    movies.addAll(Movie.fromJSONArray(movieJsonResults));
+                    movies.addAll(Movie.fromJSONArray(movieJsonResults, genreLookup));
                     movieAdapter.notifyDataSetChanged();
                     Log.d("DEBUG", movieJsonResults.toString());
                 } catch (JSONException e) {
@@ -103,17 +106,16 @@ public class MovieActivity extends AppCompatActivity {
             }
         });
     }
-    /*
 
-    public void fetchGenresAsync(int page) {
+    public void fetchGenresAsync() {
         AsyncHttpClient client = getClient();
-        client.get(movie_url, new JsonHttpResponseHandler(){
+        client.get(movie_genre, new JsonHttpResponseHandler(){
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 JSONArray genreJsonResults = null;
 
                 try {
-                    genreJsonResults = response.getJSONArray("results");
+                    genreJsonResults = response.getJSONArray("genres");
                     genreLookup= Genre.fromJSONArray(genreJsonResults);
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -125,5 +127,5 @@ public class MovieActivity extends AppCompatActivity {
                 super.onFailure(statusCode, headers, responseString, throwable);
             }
         });
-    }*/
+    }
 }

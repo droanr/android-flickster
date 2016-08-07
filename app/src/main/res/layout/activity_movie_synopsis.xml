@@ -18,7 +18,8 @@
         android:id="@+id/tvMovieTitle"
         android:textSize="@dimen/synopsis_title_size"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"/>
 
     <ImageView
         android:layout_width="wrap_content"
@@ -108,6 +109,35 @@
         android:layout_marginTop="3dp"
         android:layout_toRightOf="@+id/tvDateLabel"
         android:layout_alignParentLeft="@+id/tvDateLabel"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvGenreLabel"
+        android:text="@string/genres"
+        android:textColor="@android:color/holo_blue_light"
+        android:textStyle="bold|italic"
+        android:textSize="12sp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_alignTop="@+id/tvDateLabel"
+        android:layout_below="@+id/tvDateLabel"
+        android:layout_toRightOf="@+id/ivMovieImage"
+        android:layout_alignParentLeft="@+id/ivMovieImage"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:id="@+id/tvGenres"
+        android:textColor="@android:color/holo_blue_light"
+        android:textStyle="italic"
+        android:textSize="12sp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvDateLabel"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="4dp"
+        android:layout_toRightOf="@+id/tvGenreLabel"
+        android:layout_alignParentLeft="@+id/tvGenreLabel"/>
+
 
     <TextView
         android:layout_width="wrap_content"

@@ -18,6 +18,10 @@ public class Genre {
         this.name = jsonObject.getString("name");
     }
 
+    public String getName() {
+        return this.name;
+    }
+
     public static HashMap<Integer, Genre> fromJSONArray(JSONArray array) {
         HashMap<Integer, Genre> results = new HashMap<>();
 
