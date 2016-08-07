@@ -11,6 +11,7 @@ import android.widget.ListView;
 
 import com.drishi.flickster.R;
 import com.drishi.flickster.adapters.MovieArrayAdapter;
+import com.drishi.flickster.models.Genre;
 import com.drishi.flickster.models.Movie;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -20,17 +21,19 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import cz.msebera.android.httpclient.Header;
 
 public class MovieActivity extends AppCompatActivity {
 
-    private static final String url = "https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed";
-
+    private static final String movie_url = "https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed";
+    private static final String movie_genre = "https://api.themoviedb.org/3/genre/movie/list?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed";
     ArrayList<Movie> movies;
     MovieArrayAdapter movieAdapter;
     ListView lvItems;
     SwipeRefreshLayout swipeContainer;
+    HashMap<Integer, Genre> genreLookup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +64,8 @@ public class MovieActivity extends AppCompatActivity {
                 intent.putExtra("movie_title", movie.getOriginalTitle());
                 intent.putExtra("movie_image", movie.getPosterPath());
                 intent.putExtra("movie_overview", movie.getOverview());
+                intent.putExtra("movie_rating", movie.getRating());
+                intent.putExtra("movie_vote_count", movie.getVoteCount());
                 startActivityForResult(intent, 1);
             }
         });
@@ -74,7 +79,7 @@ public class MovieActivity extends AppCompatActivity {
     public void fetchMoviesAsync(int page) {
         movieAdapter.clear();
         AsyncHttpClient client = getClient();
-        client.get(url, new JsonHttpResponseHandler(){
+        client.get(movie_url, new JsonHttpResponseHandler(){
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 JSONArray movieJsonResults = null;
@@ -97,4 +102,27 @@ public class MovieActivity extends AppCompatActivity {
             }
         });
     }
+    /*
+
+    public void fetchGenresAsync(int page) {
+        AsyncHttpClient client = getClient();
+        client.get(movie_url, new JsonHttpResponseHandler(){
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                JSONArray genreJsonResults = null;
+
+                try {
+                    genreJsonResults = response.getJSONArray("results");
+                    genreLookup= Genre.fromJSONArray(genreJsonResults);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                super.onFailure(statusCode, headers, responseString, throwable);
+            }
+        });
+    }*/
 }

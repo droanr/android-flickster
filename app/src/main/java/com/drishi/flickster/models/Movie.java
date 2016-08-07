@@ -36,6 +36,9 @@ public class Movie {
     String originalTitle;
     String overview;
     float rating;
+    int voteCount;
+
+    public int getVoteCount() { return this.voteCount; }
 
     public Movie(JSONObject jsonObject) throws JSONException{
         this.posterPath = jsonObject.getString("poster_path");
@@ -43,6 +46,7 @@ public class Movie {
         this.originalTitle = jsonObject.getString("original_title");
         this.overview = jsonObject.getString("overview");
         this.rating = jsonObject.getInt("vote_average")/2;
+        this.voteCount = jsonObject.getInt("vote_count");
     }
 
     public static ArrayList<Movie> fromJSONArray(JSONArray array) {
