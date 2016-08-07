@@ -1,9 +1,12 @@
 package com.drishi.flickster.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.drishi.flickster.R;
@@ -49,6 +52,19 @@ public class MovieActivity extends AppCompatActivity {
         });
 
         fetchMoviesAsync(0);
+
+        lvItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                Movie movie = movies.get(position);
+                Intent intent = new Intent(MovieActivity.this, MovieSynopsisActivity.class);
+                intent.putExtra("movie_title", movie.getOriginalTitle());
+                intent.putExtra("movie_image", movie.getPosterPath());
+                intent.putExtra("movie_overview", movie.getOverview());
+                startActivityForResult(intent, 1);
+            }
+        });
+
     }
 
     public AsyncHttpClient getClient() {
