@@ -46,7 +46,7 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
         ivImage.setImageResource(0);
 
         if (orientation == Configuration.ORIENTATION_PORTRAIT) {
-            Picasso.with(getContext()).load(movie.getPosterPath()).into(ivImage);
+            Picasso.with(getContext()).load(movie.getPosterPath()).placeholder(R.mipmap.placeholder).into(ivImage);
         } else if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
             Picasso.with(getContext()).load(movie.getBackdropPath()).into(ivImage);
         }
