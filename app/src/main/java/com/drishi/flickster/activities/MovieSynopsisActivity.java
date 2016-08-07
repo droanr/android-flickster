@@ -9,6 +9,10 @@ import android.widget.TextView;
 import com.drishi.flickster.R;
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class MovieSynopsisActivity extends AppCompatActivity {
 
     TextView tvMovieTitle;
@@ -16,6 +20,7 @@ public class MovieSynopsisActivity extends AppCompatActivity {
     TextView tvMovieSummary;
     RatingBar rbMovieRating;
     TextView tvVoteCount;
+    TextView tvReleaseDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,5 +51,10 @@ public class MovieSynopsisActivity extends AppCompatActivity {
         tvVoteCount = (TextView) findViewById(R.id.tvVoteCount);
         int movieVoteCount = bundle.getInt("movie_vote_count", 0);
         tvVoteCount.setText(Integer.toString(movieVoteCount));
+
+        tvReleaseDate = (TextView) findViewById(R.id.tvReleaseDate);
+        Date movieReleaseDate = (Date)getIntent().getSerializableExtra("movie_release_date");
+        SimpleDateFormat formatter = new SimpleDateFormat("MMM dd, yyyy", Locale.US);
+        tvReleaseDate.setText(formatter.format(movieReleaseDate));
     }
 }

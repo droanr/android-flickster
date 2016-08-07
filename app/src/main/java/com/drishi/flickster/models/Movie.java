@@ -4,7 +4,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by drishi on 8/2/16.
@@ -37,8 +40,11 @@ public class Movie {
     String overview;
     float rating;
     int voteCount;
+    Date releaseDate;
 
     public int getVoteCount() { return this.voteCount; }
+
+    public Date getReleaseDate() { return this.releaseDate; }
 
     public Movie(JSONObject jsonObject) throws JSONException{
         this.posterPath = jsonObject.getString("poster_path");
@@ -47,6 +53,13 @@ public class Movie {
         this.overview = jsonObject.getString("overview");
         this.rating = jsonObject.getInt("vote_average")/2;
         this.voteCount = jsonObject.getInt("vote_count");
+        SimpleDateFormat sdFmt = new SimpleDateFormat("yyyy-mm-dd");
+        try {
+            this.releaseDate = sdFmt.parse(jsonObject.getString("release_date"));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public static ArrayList<Movie> fromJSONArray(JSONArray array) {

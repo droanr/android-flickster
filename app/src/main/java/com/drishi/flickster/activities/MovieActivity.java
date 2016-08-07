@@ -66,6 +66,7 @@ public class MovieActivity extends AppCompatActivity {
                 intent.putExtra("movie_overview", movie.getOverview());
                 intent.putExtra("movie_rating", movie.getRating());
                 intent.putExtra("movie_vote_count", movie.getVoteCount());
+                intent.putExtra("movie_release_date", movie.getReleaseDate());
                 startActivityForResult(intent, 1);
             }
         });
