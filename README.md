@@ -19,4 +19,4 @@ Stretch: Apply the popular ButterKnife annotation library to reduce view boilerp
 Stretch: Add a rounded corners for the images using the Picasso transformations. (1 point)
 
 GIF:
-![alt tag] https://github.com/droanr/android-flickster/blob/master/Flickster.gif?raw=true
+![alt tag](https://raw.githubusercontent.com/droanr/android-flickster/master/Flickster.gif)
