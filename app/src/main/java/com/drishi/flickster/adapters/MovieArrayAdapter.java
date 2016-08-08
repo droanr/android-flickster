@@ -1,16 +1,19 @@
 package com.drishi.flickster.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.drishi.flickster.R;
+import com.drishi.flickster.activities.MovieTrailer;
 import com.drishi.flickster.models.Movie;
 import com.squareup.picasso.Picasso;
 
@@ -54,6 +57,16 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
         TextView tvTitle = (TextView) convertView.findViewById(R.id.tvTitle);
         TextView tvOverview = (TextView) convertView.findViewById(R.id.tvOverview);
         RatingBar rbMovieRating = (RatingBar) convertView.findViewById(R.id.rbMovieRating);
+        ImageButton ibMovieTrailer = (ImageButton) convertView.findViewById(R.id.ibMovieTrailer);
+
+        ibMovieTrailer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getContext(), MovieTrailer.class);
+                getContext().startActivity(i);
+
+            }
+        });
 
         rbMovieRating.setRating(movie.getRating());
 

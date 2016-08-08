@@ -32,7 +32,8 @@ public class MovieActivity extends AppCompatActivity {
 
     private static final String movie_url = "https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed";
     private static final String movie_genre = "https://api.themoviedb.org/3/genre/movie/list?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed";
-    private static final String youtube_api_key= "AIzaSyAdy8CnnFcbSJbdpxceOeLrIbqqEB2ZxuA";
+
+    private static final String video_request_url = "https://api.themoviedb.org/3/movie/%d/videos?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed";
     ArrayList<Movie> movies;
     MovieArrayAdapter movieAdapter;
     ListView lvItems;
