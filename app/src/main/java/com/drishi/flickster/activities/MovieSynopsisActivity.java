@@ -1,5 +1,6 @@
 package com.drishi.flickster.activities;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -32,6 +33,10 @@ public class MovieSynopsisActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.action_bar);
+
+        TextView tvActionBar = (TextView) findViewById(R.id.tvAppTitle);
+        Typeface tf = Typeface.createFromAsset(getAssets(), "fonts/remachine_script_font.ttf");
+        tvActionBar.setTypeface(tf);
 
         tvMovieTitle = (TextView) findViewById(R.id.tvMovieTitle);
         ivMovieImage = (ImageView) findViewById(R.id.ivMovieImage);

@@ -1,6 +1,7 @@
 package com.drishi.flickster.activities;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
@@ -9,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.drishi.flickster.R;
 import com.drishi.flickster.adapters.MovieArrayAdapter;
@@ -43,6 +45,11 @@ public class MovieActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.action_bar);
+
+        TextView tvActionBar = (TextView) findViewById(R.id.tvAppTitle);
+        Typeface tf = Typeface.createFromAsset(getAssets(), "fonts/remachine_script_font.ttf");
+        tvActionBar.setTypeface(tf);
+
 
         lvItems = (ListView) findViewById(R.id.lvMovies);
         movies = new ArrayList<>();
