@@ -21,8 +21,8 @@
         android:alpha="0.5"
         android:id="@+id/ibMovieTrailer"
         android:background="@drawable/roundcorner"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="70dp" />
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="10dp"/>
 
     <TextView
         android:layout_width="wrap_content"

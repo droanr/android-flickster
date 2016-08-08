@@ -70,9 +70,7 @@ public class Movie {
         this.genres = new ArrayList<>();
         JSONArray genreIds = jsonObject.getJSONArray("genre_ids");
         for (int x = 0; x < genreIds.length(); x++) {
-            System.out.println("ASIUDFHILUASDFHILUSDFHAILSUDFHAISLUDFHALISUDFH");
             int foo = genreIds.getInt(x);
-            System.out.println(genreLookup.get(Integer.valueOf(foo)));
             this.genres.add(genreLookup.get(genreIds.get(x)));
         }
         SimpleDateFormat sdFmt = new SimpleDateFormat("yyyy-mm-dd");

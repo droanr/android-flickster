@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@android:color/black"
+    tools:context="com.drishi.flickster.activities.MovieSynopsisActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Large Text"
+        android:id="@+id/tvMovieTitle"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="@dimen/synopsis_title_size"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ivMovieImage"
+        tools:src="@mipmap/ic_launcher"
+        android:layout_alignTop="@+id/rbMovieRating"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvRatingLabel"
+        android:text="@string/rating"
+        android:textColor="@android:color/holo_blue_light"
+        android:textStyle="bold|italic"
+        android:textSize="12sp"
+        android:layout_marginLeft="20dp"
+        android:layout_alignTop="@+id/rbMovieRating"
+        android:layout_below="@+id/tvMovieTitle"
+        android:layout_toRightOf="@+id/ivMovieImage"
+        android:layout_alignParentLeft="@+id/ivMovieImage"/>
+
+    <RatingBar
+        android:layout_width="wrap_content"
+        android:id="@+id/rbMovieRating"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvMovieTitle"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/tvRatingLabel"
+        android:layout_alignParentLeft="@+id/tvRatingLabel"
+        style="?android:attr/ratingBarStyleSmall"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvVotesLabel"
+        android:text="@string/votes"
+        android:textColor="@android:color/holo_blue_light"
+        android:textStyle="bold|italic"
+        android:textSize="12sp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_alignTop="@+id/rbMovieRating"
+        android:layout_below="@+id/tvRatingLabel"
+        android:layout_toRightOf="@+id/ivMovieImage"
+        android:layout_alignParentLeft="@+id/ivMovieImage"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:id="@+id/tvVoteCount"
+        android:textColor="@android:color/holo_blue_light"
+        android:textStyle="italic"
+        android:textSize="12sp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvRatingLabel"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="3dp"
+        android:layout_toRightOf="@+id/tvVotesLabel"
+        android:layout_alignParentLeft="@+id/tvVotesLabel"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvDateLabel"
+        android:text="@string/release_date"
+        android:textColor="@android:color/holo_blue_light"
+        android:textStyle="bold|italic"
+        android:textSize="12sp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_alignTop="@+id/tvVotesLabel"
+        android:layout_below="@+id/tvVotesLabel"
+        android:layout_toRightOf="@+id/ivMovieImage"
+        android:layout_alignParentLeft="@+id/ivMovieImage"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:id="@+id/tvReleaseDate"
+        android:textColor="@android:color/holo_blue_light"
+        android:textStyle="italic"
+        android:textSize="12sp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvVotesLabel"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="3dp"
+        android:layout_toRightOf="@+id/tvDateLabel"
+        android:layout_alignParentLeft="@+id/tvDateLabel"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvGenreLabel"
+        android:text="@string/genres"
+        android:textColor="@android:color/holo_blue_light"
+        android:textStyle="bold|italic"
+        android:textSize="12sp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_alignTop="@+id/tvDateLabel"
+        android:layout_below="@+id/tvDateLabel"
+        android:layout_toRightOf="@+id/ivMovieImage"
+        android:layout_alignParentLeft="@+id/ivMovieImage"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:id="@+id/tvGenres"
+        android:textColor="@android:color/holo_blue_light"
+        android:textStyle="italic"
+        android:textSize="12sp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvDateLabel"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="4dp"
+        android:layout_toRightOf="@+id/tvGenreLabel"
+        android:layout_alignParentLeft="@+id/tvGenreLabel"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Medium Text"
+        android:id="@+id/tvMovieSummary"
+        android:textColor="@android:color/white"
+        android:layout_below="@+id/tvGenreLabel"
+        android:layout_alignLeft="@+id/tvGenreLabel"
+        android:layout_alignStart="@+id/tvGenreLabel"
+        android:layout_marginTop="57dp" />
+
+
+</RelativeLayout>
