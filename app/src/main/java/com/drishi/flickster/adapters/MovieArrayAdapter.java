@@ -31,7 +31,7 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // get the data item for position
-        Movie movie = getItem(position);
+        final Movie movie = getItem(position);
 
         // check the existing view being reused
         if (convertView == null) {
@@ -63,6 +63,7 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(getContext(), MovieTrailer.class);
+                i.putExtra("video_key", movie.getVideoKey());
                 getContext().startActivity(i);
 
             }

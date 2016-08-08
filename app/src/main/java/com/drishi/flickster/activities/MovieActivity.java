@@ -129,7 +129,7 @@ public class MovieActivity extends AppCompatActivity {
 
                 try {
                     genreJsonResults = response.getJSONArray("genres");
-                    genreLookup= Genre.fromJSONArray(genreJsonResults);
+                    genreLookup = Genre.fromJSONArray(genreJsonResults);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

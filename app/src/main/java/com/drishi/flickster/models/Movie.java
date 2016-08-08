@@ -1,5 +1,8 @@
 package com.drishi.flickster.models;
 
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.JsonHttpResponseHandler;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -9,6 +12,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+
+import cz.msebera.android.httpclient.Header;
 
 /**
  * Created by drishi on 8/2/16.
@@ -43,6 +48,7 @@ public class Movie {
     int voteCount;
     Date releaseDate;
     ArrayList<Genre> genres;
+    String videoKey;
 
     public ArrayList<String> getGenres() {
         ArrayList<String> genres = new ArrayList<>();
@@ -59,6 +65,12 @@ public class Movie {
     public int getVoteCount() { return this.voteCount; }
 
     public Date getReleaseDate() { return this.releaseDate; }
+
+    public String getVideoKey() { return this.videoKey; }
+
+    private static final String video_request_url_1 = "https://api.themoviedb.org/3/movie/";
+    private static final String video_request_url_2 = "/videos?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed";
+
 
     public Movie(JSONObject jsonObject, HashMap<Integer, Genre> genreLookup) throws JSONException{
         this.posterPath = jsonObject.getString("poster_path");
@@ -79,6 +91,8 @@ public class Movie {
         } catch (ParseException e) {
             e.printStackTrace();
         }
+        fetchMovieVideoKey(jsonObject.getInt("id"));
+        this.videoKey = videoKey;
     }
 
     public static ArrayList<Movie> fromJSONArray(JSONArray array, HashMap<Integer, Genre> genreLookup) {
@@ -93,5 +107,30 @@ public class Movie {
         }
 
         return results;
+    }
+
+    public void fetchMovieVideoKey(int id) {
+        AsyncHttpClient client = new AsyncHttpClient();
+        String url = video_request_url_1 + Integer.toString(id) + video_request_url_2;
+        client.get(url, new JsonHttpResponseHandler(){
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                JSONArray movieVideoResults = null;
+
+                try {
+                    movieVideoResults = response.getJSONArray("results");
+                    JSONObject firstResult = movieVideoResults.getJSONObject(0);
+                    videoKey = firstResult.getString("key");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                super.onFailure(statusCode, headers, responseString, throwable);
+            }
+        });
     }
 }

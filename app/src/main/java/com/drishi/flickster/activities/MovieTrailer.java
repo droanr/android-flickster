@@ -17,12 +17,14 @@ public class MovieTrailer extends YouTubeBaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_trailer);
 
+        final String key = getIntent().getStringExtra("video_key");
+
         final YouTubePlayerView yvTrailer = (YouTubePlayerView) findViewById(R.id.player);
         yvTrailer.initialize(youtube_api_key,
                 new YouTubePlayer.OnInitializedListener() {
                     @Override
                     public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
-                        youTubePlayer.loadVideo("WawU4ouldxU");
+                        youTubePlayer.loadVideo(key);
                     }
 
                     @Override
