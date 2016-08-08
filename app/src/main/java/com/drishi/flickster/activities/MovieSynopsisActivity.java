@@ -1,6 +1,7 @@
 package com.drishi.flickster.activities;
 
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.RatingBar;
@@ -28,6 +29,10 @@ public class MovieSynopsisActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_synopsis);
+
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.action_bar);
+
         tvMovieTitle = (TextView) findViewById(R.id.tvMovieTitle);
         ivMovieImage = (ImageView) findViewById(R.id.ivMovieImage);
         tvMovieSummary = (TextView) findViewById(R.id.tvMovieSummary);

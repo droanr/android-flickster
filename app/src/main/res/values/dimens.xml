@@ -4,5 +4,5 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="abridged_summary_size">1sp</dimen>
     <dimen name="app_title_text_size">20sp</dimen>
-    <dimen name="synopsis_title_size">30sp</dimen>
+    <dimen name="synopsis_title_size">22sp</dimen>
 </resources>
