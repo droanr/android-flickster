@@ -16,3 +16,5 @@ Stretch : Leverage the data binding support module to bind data into one or more
 Stretch: Apply the popular ButterKnife annotation library to reduce view boilerplate. (1 point)
 Stretch: Add a rounded corners for the images using the Picasso transformations. (1 point)
 
+GIF:
+https://github.com/droanr/android-flickster/blob/master/Flickster.gif?raw=true
