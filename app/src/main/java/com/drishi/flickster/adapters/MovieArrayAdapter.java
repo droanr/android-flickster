@@ -48,7 +48,7 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
         if (orientation == Configuration.ORIENTATION_PORTRAIT) {
             Picasso.with(getContext()).load(movie.getPosterPath()).placeholder(R.mipmap.placeholder).into(ivImage);
         } else if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            Picasso.with(getContext()).load(movie.getBackdropPath()).into(ivImage);
+            Picasso.with(getContext()).load(movie.getBackdropPath()).placeholder(R.mipmap.placeholder).into(ivImage);
         }
 
         TextView tvTitle = (TextView) convertView.findViewById(R.id.tvTitle);
